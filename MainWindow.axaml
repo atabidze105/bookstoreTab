@@ -1,0 +1,86 @@
+<Window 
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="600"
+	MinWidth="1200" MinHeight="600"
+	WindowState="Maximized"
+	x:Class="bookshopTab.MainWindow"
+	x:CompileBindings="False"
+	Title="bookshopTab">
+	<Grid
+		ColumnDefinitions="*,5*,5*,*"
+		RowDefinitions="1.5*,8*,0.5*">
+		<Panel
+			Grid.Column="1">
+			<TextBox
+				Name="tbox_searchbar"
+				VerticalAlignment="Center"
+				Watermark="Найти..."/>
+		</Panel>
+		<StackPanel
+			Grid.Column="2" Orientation="Horizontal"
+			HorizontalAlignment="Right">
+			<ComboBox
+				Name="cbox_filtration" VerticalAlignment="Center"
+				SelectionChanged="ComboBox_SelectionChanged">
+				<ComboBoxItem Content="Все элементы"/>
+			</ComboBox>
+			<ComboBox
+				Name="cbox_sorting" VerticalAlignment="Center">
+				<ComboBoxItem Content="Все элементы"/>
+				<ComboBoxItem />
+				<ComboBoxItem />
+			</ComboBox>
+		</StackPanel>
+		<ListBox
+			Name="lbox_books"
+			Grid.Column="1" Grid.ColumnSpan="2"
+			Grid.Row="1">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel HorizontalAlignment="Center" Background="#e7fabf"/>
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel
+						Background="{Binding Background}"
+						Width="200">
+						<!--изображение-->
+						<Image
+							Source="{Binding ImageMain}"
+							Height="280"
+							Margin="10"/>
+						<!--цена-->
+						<TextBlock
+							Text="{Binding Price}"
+							TextWrapping="WrapWithOverflow"
+							Margin="10 0 10 10"
+							Foreground="#04a0ff"
+							FontWeight="Bold"/>
+						<!--название-->
+						<TextBlock
+							Text="{Binding Header}"
+							TextWrapping="WrapWithOverflow"
+							Margin="10 0 10 10"/>
+						<!--поставщик-->
+						<TextBlock
+							Text="{Binding Supplier}"
+							TextWrapping="WrapWithOverflow"
+							Margin="10 0 10 10"
+							VerticalAlignment="Bottom"/>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<StackPanel
+			Grid.Column="1" Grid.ColumnSpan="2"
+			Grid.Row="2">
+			<TextBlock
+				Name="tblock_itemsCount"
+				FontSize="25" HorizontalAlignment="Center"/>
+		</StackPanel>
+	</Grid>
+</Window>
