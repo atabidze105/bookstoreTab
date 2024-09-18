@@ -24,3 +24,6 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/prdb/Desktop/bookshopTab/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/prdb/Desktop/bookshopTab/RedWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

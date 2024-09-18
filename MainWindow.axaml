@@ -17,30 +17,35 @@
 			<TextBox
 				Name="tbox_searchbar"
 				VerticalAlignment="Center"
-				Watermark="Найти..."/>
+				Watermark="Найти..."
+				KeyUp="tbox_searchActivity"
+				FontFamily="{StaticResource ComicSansMS}"/>
 		</Panel>
 		<StackPanel
 			Grid.Column="2" Orientation="Horizontal"
 			HorizontalAlignment="Right">
 			<ComboBox
 				Name="cbox_filtration" VerticalAlignment="Center"
-				SelectionChanged="ComboBox_SelectionChanged">
+				SelectionChanged="ComboBox_SelectionChanged"
+				FontFamily="{StaticResource ComicSansMS}">
 				<ComboBoxItem Content="Все элементы"/>
 			</ComboBox>
 			<ComboBox
-				Name="cbox_sorting" VerticalAlignment="Center">
+				Name="cbox_sorting" VerticalAlignment="Center"
+				SelectionChanged="ComboBox_SelectionChanged_1"
+				FontFamily="{StaticResource ComicSansMS}">
 				<ComboBoxItem Content="Все элементы"/>
-				<ComboBoxItem />
-				<ComboBoxItem />
+				<ComboBoxItem  Content="Цена: по убыванию"/>
+				<ComboBoxItem Content="Цена: по возрастанию"/>
 			</ComboBox>
 		</StackPanel>
 		<ListBox
 			Name="lbox_books"
 			Grid.Column="1" Grid.ColumnSpan="2"
-			Grid.Row="1">
+			Grid.Row="1"  Background="#e7fabf">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
-					<WrapPanel HorizontalAlignment="Center" Background="#e7fabf"/>
+					<WrapPanel HorizontalAlignment="Center"/>
 				</ItemsPanelTemplate>
 			</ListBox.ItemsPanel>
 			<ListBox.ItemTemplate>
@@ -59,18 +64,21 @@
 							TextWrapping="WrapWithOverflow"
 							Margin="10 0 10 10"
 							Foreground="#04a0ff"
-							FontWeight="Bold"/>
+							FontWeight="Bold"
+							FontFamily="{StaticResource ComicSansMS}"/>
 						<!--название-->
 						<TextBlock
 							Text="{Binding Header}"
 							TextWrapping="WrapWithOverflow"
-							Margin="10 0 10 10"/>
+							Margin="10 0 10 10"
+							FontFamily="{StaticResource ComicSansMS}"/>
 						<!--поставщик-->
 						<TextBlock
 							Text="{Binding Supplier}"
 							TextWrapping="WrapWithOverflow"
 							Margin="10 0 10 10"
-							VerticalAlignment="Bottom"/>
+							VerticalAlignment="Bottom"
+							FontFamily="{StaticResource ComicSansMS}"/>
 					</StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
@@ -80,7 +88,8 @@
 			Grid.Row="2">
 			<TextBlock
 				Name="tblock_itemsCount"
-				FontSize="25" HorizontalAlignment="Center"/>
+				FontSize="25" HorizontalAlignment="Center"
+				FontFamily="{StaticResource ComicSansMS}"/>
 		</StackPanel>
 	</Grid>
 </Window>

@@ -26,8 +26,7 @@ namespace bookshopTab
             tbox_searchbar.Text = _SearchbarContent;
             cbox_sorting.SelectedIndex = _SortingItemIndex;
             cbox_filtration.SelectedIndex = _FiltrationItemIndex;
-            Filtration();
-            ListBoxInit(_FoundedProducts.Count > 0 ? _FoundedProducts : _Products);
+            FiltrationAndSorting();
         }
 
         private void ListBoxInit(List<Product> products)
@@ -42,6 +41,14 @@ namespace bookshopTab
             });
         }
 
+        private void FiltrationAndSorting()
+        {
+            _FoundedProducts.Clear();
+            Filtration();
+            ListBoxInit(Searching());
+            ItemsCountUpdate();
+        }
+
         private void CboxFiltrationInit()
         {
             List<Manufacturer> manufacturers = [];
@@ -52,18 +59,118 @@ namespace bookshopTab
             }
         }
 
+        private void ItemsCountUpdate()
+        {
+            tblock_itemsCount.Text = $"{(_FoundedProducts.Count > 0 || cbox_filtration.SelectedIndex != 0 ? _FoundedProducts.Count : _Products.Count)} / {_Products.Count}";
+        }
+
         private void Filtration()
         {
-            string? s = (cbox_filtration.SelectedItem!.ToString())!;
-            if(s != "Все элементы")
-                _FoundedProducts.AddRange(_Products.Where(x => x.Manufacturer.Name == s));
+            
+            if (cbox_filtration.SelectedItem != null)
+            {
+                string? s = (cbox_filtration.SelectedItem!.ToString())!;
+                if (s != "Все элементы")
+                    _FoundedProducts.AddRange(_Products.Where(x => x.Manufacturer.Name == s));
+            }
+        }
+
+        private List<Product> BubbleSorting(List<Product> products ,int selectedOption) //Сортировка пузырьком
+        {
+            List<Product> bubble = []; //Список для сортировки пузырьком
+            bubble.AddRange(products);
+            switch (selectedOption)
+            {
+                case 0:
+                    return products;
+                case 1: //По убыванию
+                    {
+                        for (int i = 0; i < bubble.Count; i++)
+                            for (int j = 0; j < bubble.Count - i - 1; j++)
+                            {
+                                if (bubble[j].Cost < bubble[j + 1].Cost)
+                                {
+                                    Product temp = bubble[j];
+                                    bubble[j] = bubble[j + 1];
+                                    bubble[j + 1] = temp;
+                                }
+                            }
+                    }            
+                    break;
+                case 2: //По возрастанию
+                    {
+                        for (int i = 0; i < bubble.Count; i++)
+                            for (int j = 0; j < bubble.Count - i - 1; j++)
+                            {
+                                if (bubble[j].Cost > bubble[j + 1].Cost)
+                                {
+                                    Product temp = bubble[j];
+                                    bubble[j] = bubble[j + 1];
+                                    bubble[j + 1] = temp;
+                                }
+                            }
+                    }
+                    break;
+            }
+            products.Clear();
+            products.AddRange(bubble);
+            return products;
+        }
+
+        private List<Product> Searching()
+        {
+            if (tbox_searchbar.Text != "")
+            {
+                List<Product> unsortedProducts = [];
+                unsortedProducts.AddRange(_FoundedProducts.Count > 0 || cbox_filtration.SelectedIndex != 0 ? _FoundedProducts : _Products);
+                int prioriryLevel;
+                List<Product> productsPriorityLevel1 = [];
+                List<Product> productsPriorityLevel2 = [];
+                foreach (Product product in unsortedProducts)
+                {
+                    prioriryLevel = 0;
+                    if (product.Name.Trim().ToLower().Contains(tbox_searchbar.Text.Trim().ToLower()))
+                    {
+                        prioriryLevel++;
+                    }
+                    if (product.Description.Trim().ToLower().Contains(tbox_searchbar.Text.Trim().ToLower()))
+                    {
+                        prioriryLevel++;
+                    }
+                    switch (prioriryLevel)
+                    {
+                        case 1:
+                            productsPriorityLevel1.Add(product);
+                            break;
+                        case 2:
+                            productsPriorityLevel2.Add(product);
+                            break;
+                    }
+                }
+                _FoundedProducts.Clear();
+                _FoundedProducts.AddRange(BubbleSorting(productsPriorityLevel2, cbox_sorting.SelectedIndex));
+                _FoundedProducts.AddRange(BubbleSorting(productsPriorityLevel1, cbox_sorting.SelectedIndex));
+                return _FoundedProducts;
+            }
+            else
+            {
+                return BubbleSorting(_FoundedProducts.Count > 0 || cbox_filtration.SelectedIndex != 0 ? _FoundedProducts : _Products, cbox_sorting.SelectedIndex);
+            }
         }
 
         private void ComboBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
         {
-            _FoundedProducts.Clear();
-            Filtration();
-            ListBoxInit(_FoundedProducts.Count > 0 ? _FoundedProducts : _Products);
+            FiltrationAndSorting();
+        }
+
+        private void tbox_searchActivity(object? sender, Avalonia.Input.KeyEventArgs e)
+        {
+            FiltrationAndSorting();
+        }
+
+        private void ComboBox_SelectionChanged_1(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        {
+            FiltrationAndSorting();
         }
     }
 }

@@ -7,7 +7,7 @@
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>
-	<!--<Application.Resources>
-		<FontFamily x:Key="ComicSansFont">avares://bookshopTab/bin/debug/net8.0/Assets/Fonts#comic.ttf</FontFamily>
-	</Application.Resources>-->
+	<Application.Resources>
+		<FontFamily x:Key="ComicSansMS">avares://bookshopTab/assets/Fonts/comic.ttf#Comic Sans MS</FontFamily>
+	</Application.Resources>
 </Application>

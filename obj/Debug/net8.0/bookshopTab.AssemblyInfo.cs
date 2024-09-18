@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("bookshopTab")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19357f1b6cc31d8160b69ec0f11ff69163277837")]
 [assembly: System.Reflection.AssemblyProductAttribute("bookshopTab")]
 [assembly: System.Reflection.AssemblyTitleAttribute("bookshopTab")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
