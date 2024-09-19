@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using bookshopTab.Models;
 using Microsoft.EntityFrameworkCore;
@@ -31,14 +32,7 @@ namespace bookshopTab
 
         private void ListBoxInit(List<Product> products)
         {
-            lbox_books.ItemsSource = products.Select(x => new
-            {
-                Header = $"{x.Name} ({x.AttachedProducts.Count})",
-                ImageMain = System.IO.File.Exists($"Assets/{x.MainImagePath}") == true ? new Bitmap($"Assets/{x.MainImagePath}") : null,
-                Price = $"{x.Cost} {System.Net.WebUtility.HtmlDecode("&#8381;")}" ,
-                Background = x.IsActive == true ? "White" : "LightGray",
-                Supplier = x.Manufacturer.Name
-            });
+            lbox_books.ItemsSource = products.ToList();
         }
 
         private void FiltrationAndSorting()
@@ -168,9 +162,25 @@ namespace bookshopTab
             FiltrationAndSorting();
         }
 
-        private void ComboBox_SelectionChanged_1(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        private void StackPanel_DoubleTapped(object? sender, Avalonia.Input.TappedEventArgs e)
         {
-            FiltrationAndSorting();
+            _SearchbarContent = tbox_searchbar.Text;
+            _FiltrationItemIndex = cbox_filtration.SelectedIndex;
+            _SortingItemIndex = cbox_sorting.SelectedIndex;
+            var product = lbox_books.SelectedItem as Product;
+            RedWindow redWindow = new RedWindow(product);
+            redWindow.Show();
+            Close();
+        }
+
+        private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            _SearchbarContent = tbox_searchbar.Text;
+            _FiltrationItemIndex = cbox_filtration.SelectedIndex;
+            _SortingItemIndex = cbox_sorting.SelectedIndex;
+            RedWindow redWindow = new RedWindow();
+            redWindow.Show();
+            Close();
         }
     }
 }

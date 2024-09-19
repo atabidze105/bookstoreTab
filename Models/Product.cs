@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Media.Imaging;
+using System;
 using System.Collections.Generic;
 
 namespace bookshopTab.Models;
@@ -28,4 +29,8 @@ public partial class Product
     public virtual ICollection<Product> AttachedProducts { get; set; } = new List<Product>();
 
     public virtual ICollection<Product> MainProducts { get; set; } = new List<Product>();
+
+    public Bitmap? ImageMain => System.IO.File.Exists($"Assets/{MainImagePath}") == true ? new Bitmap($"Assets/{MainImagePath}") : null;
+
+    public string Background => IsActive == true ? "White" : "LightGray";
 }

@@ -24,16 +24,17 @@
 		<StackPanel
 			Grid.Column="2" Orientation="Horizontal"
 			HorizontalAlignment="Right">
+			<Button
+				Content="Добавить товар"
+				Click="Button_Click"/>
 			<ComboBox
 				Name="cbox_filtration" VerticalAlignment="Center"
-				SelectionChanged="ComboBox_SelectionChanged"
-				FontFamily="{StaticResource ComicSansMS}">
+				SelectionChanged="ComboBox_SelectionChanged">
 				<ComboBoxItem Content="Все элементы"/>
 			</ComboBox>
 			<ComboBox
 				Name="cbox_sorting" VerticalAlignment="Center"
-				SelectionChanged="ComboBox_SelectionChanged_1"
-				FontFamily="{StaticResource ComicSansMS}">
+				SelectionChanged="ComboBox_SelectionChanged">
 				<ComboBoxItem Content="Все элементы"/>
 				<ComboBoxItem  Content="Цена: по убыванию"/>
 				<ComboBoxItem Content="Цена: по возрастанию"/>
@@ -52,7 +53,7 @@
 				<DataTemplate>
 					<StackPanel
 						Background="{Binding Background}"
-						Width="200">
+						Width="200" DoubleTapped="StackPanel_DoubleTapped">
 						<!--изображение-->
 						<Image
 							Source="{Binding ImageMain}"
@@ -60,25 +61,29 @@
 							Margin="10"/>
 						<!--цена-->
 						<TextBlock
-							Text="{Binding Price}"
+							Text="{Binding Cost, StringFormat='{}{0} &#8381;'}"
 							TextWrapping="WrapWithOverflow"
 							Margin="10 0 10 10"
 							Foreground="#04a0ff"
-							FontWeight="Bold"
-							FontFamily="{StaticResource ComicSansMS}"/>
+							FontWeight="Bold"/>
 						<!--название-->
 						<TextBlock
-							Text="{Binding Header}"
 							TextWrapping="WrapWithOverflow"
-							Margin="10 0 10 10"
-							FontFamily="{StaticResource ComicSansMS}"/>
+							Margin="10 0 10 10">
+							<TextBlock.Text>
+								<MultiBinding
+									StringFormat="{}{0} ({1})">
+									<Binding Path="Name"/>
+									<Binding Path="AttachedProducts.Count"/>
+								</MultiBinding>
+							</TextBlock.Text>
+						</TextBlock>
 						<!--поставщик-->
 						<TextBlock
-							Text="{Binding Supplier}"
+							Text="{Binding Manufacturer.Name}"
 							TextWrapping="WrapWithOverflow"
 							Margin="10 0 10 10"
-							VerticalAlignment="Bottom"
-							FontFamily="{StaticResource ComicSansMS}"/>
+							VerticalAlignment="Bottom"/>
 					</StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
@@ -88,8 +93,7 @@
 			Grid.Row="2">
 			<TextBlock
 				Name="tblock_itemsCount"
-				FontSize="25" HorizontalAlignment="Center"
-				FontFamily="{StaticResource ComicSansMS}"/>
+				FontSize="25" HorizontalAlignment="Center"/>
 		</StackPanel>
 	</Grid>
 </Window>

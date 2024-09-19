@@ -10,4 +10,29 @@
 	<Application.Resources>
 		<FontFamily x:Key="ComicSansMS">avares://bookshopTab/assets/Fonts/comic.ttf#Comic Sans MS</FontFamily>
 	</Application.Resources>
+	<Application.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="FontFamily" Value="{DynamicResource ComicSansMS}"/>
+		</Style>
+
+
+		<Style Selector="Button">
+			<Setter Property="FontFamily" Value="{DynamicResource ComicSansMS}"/>
+			<Setter Property="TextBlock.Foreground" Value="White"/>
+			<Setter Property="Background" Value="rgb(4,160,255)"/>
+
+			<Style Selector="^:pointerover">
+
+				<Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+					<Setter Property="TextBlock.Foreground" Value="LightGray"/>
+					<Setter Property="Background" Value="rgb(4,160,255)"/>
+				</Style>
+			</Style>			
+		</Style>
+		
+		
+		<Style Selector="Border.Border">
+			
+		</Style>
+	</Application.Styles>
 </Application>

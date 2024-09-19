@@ -11,7 +11,7 @@ namespace bookshopTab
     {
         //Общие данные
         
-        public static Product _RedProduct = null;
+        //public static Product _RedProduct = null;
 
         //Параметры выборки и фильтрации
         public static string _SearchbarContent = "";
