@@ -10,7 +10,7 @@ public partial class Product
 
     public string Name { get; set; } = null!;
 
-    public int Cost { get; set; }
+    public double Cost { get; set; }
 
     public string? Description { get; set; }
 

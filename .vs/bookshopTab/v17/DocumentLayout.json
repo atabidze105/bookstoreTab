@@ -3,19 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\prdb\\Desktop\\bookshopTab\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|C:\\Users\\prdb\\Desktop\\bookshopTab\\redwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|solutionrelative:redwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|C:\\Users\\prdb\\Desktop\\bookshopTab\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|C:\\Users\\prdb\\Desktop\\bookshopTab\\redwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
       "RelativeMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|solutionrelative:redwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|C:\\Users\\prdb\\Desktop\\bookshopTab\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|C:\\Users\\prdb\\Desktop\\bookshopTab\\redwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|solutionrelative:redwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|c:\\users\\prdb\\desktop\\bookshoptab\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|C:\\Users\\prdb\\Desktop\\bookshopTab\\staticdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|solutionrelative:staticdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|C:\\Users\\prdb\\Desktop\\bookshopTab\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|solutionrelative:mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -23,11 +27,7 @@
       "RelativeMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|solutionrelative:mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|C:\\Users\\prdb\\Desktop\\bookshopTab\\staticdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|solutionrelative:staticdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|C:\\Users\\prdb\\Desktop\\bookshopTab\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|c:\\users\\prdb\\desktop\\bookshoptab\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52CF6B46-0BAF-43F6-8BCE-0B1B337800D1}|bookshopTab.csproj|solutionrelative:helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,39 +74,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "RedWindow.axaml.cs",
               "DocumentMoniker": "C:\\Users\\prdb\\Desktop\\bookshopTab\\RedWindow.axaml.cs",
               "RelativeDocumentMoniker": "RedWindow.axaml.cs",
               "ToolTip": "C:\\Users\\prdb\\Desktop\\bookshopTab\\RedWindow.axaml.cs",
               "RelativeToolTip": "RedWindow.axaml.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAADIAAAA9AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-18T13:41:48.445Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "StaticData.cs",
               "DocumentMoniker": "C:\\Users\\prdb\\Desktop\\bookshopTab\\StaticData.cs",
               "RelativeDocumentMoniker": "StaticData.cs",
               "ToolTip": "C:\\Users\\prdb\\Desktop\\bookshopTab\\StaticData.cs",
               "RelativeToolTip": "StaticData.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAIAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-17T13:12:17.882Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Users\\prdb\\Desktop\\bookshopTab\\Models\\Product.cs",
               "RelativeDocumentMoniker": "Models\\Product.cs",
               "ToolTip": "C:\\Users\\prdb\\Desktop\\bookshopTab\\Models\\Product.cs",
               "RelativeToolTip": "Models\\Product.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAB8AAAAAAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-17T11:04:49.959Z",
               "EditorCaption": ""
@@ -126,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "MainWindow.axaml",
               "DocumentMoniker": "C:\\Users\\prdb\\Desktop\\bookshopTab\\MainWindow.axaml",
               "RelativeDocumentMoniker": "MainWindow.axaml",
@@ -138,13 +138,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MainWindow.axaml.cs",
               "DocumentMoniker": "C:\\Users\\prdb\\Desktop\\bookshopTab\\MainWindow.axaml.cs",
               "RelativeDocumentMoniker": "MainWindow.axaml.cs",
               "ToolTip": "C:\\Users\\prdb\\Desktop\\bookshopTab\\MainWindow.axaml.cs",
               "RelativeToolTip": "MainWindow.axaml.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAALMAAAA7AAAA",
+              "ViewState": "AQIAAJgAAAAAAAAAAAAQwKsAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-17T11:23:39.609Z",
               "EditorCaption": ""

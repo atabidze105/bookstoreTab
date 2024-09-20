@@ -10,8 +10,6 @@ namespace bookshopTab
     internal static class StaticData
     {
         //Общие данные
-        
-        //public static Product _RedProduct = null;
 
         //Параметры выборки и фильтрации
         public static string _SearchbarContent = "";

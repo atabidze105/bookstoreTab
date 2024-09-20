@@ -7,6 +7,7 @@
 	MinWidth="900" MinHeight="800"
 	Width="900" Height="800"
 	WindowStartupLocation="CenterOwner"
+	x:CompileBindings="False"
 	x:Class="bookshopTab.RedWindow"
 	Title="RedWindow">
 	<Grid
@@ -32,40 +33,113 @@
 				Watermark="Описание"
 				TextWrapping="Wrap"
 				MaxHeight="200"/>
-			<ComboBox
-				Name="cbox_suppliers"
-				Margin="15" SelectedIndex="0">
-				<TextBox
-					KeyUp="TextBox_ManufacturerSearch"
-					Watermark="Производитель товара"/>
-			</ComboBox>
-			<StackPanel
+			
+			<StackPanel 
+				Orientation="Horizontal"
+				Margin="15">
+				<CheckBox
+					Name="chbox_isActive"
+					Content="Активный товар"
+					Margin="0 0 15 0"
+					VerticalAlignment="Top"/>
+				<ComboBox
+					Name="cbox_suppliers" SelectedIndex="0"
+					VerticalAlignment="Top">
+					<TextBox
+						KeyUp="TextBox_ManufacturerSearch"
+						Watermark="Производитель товара"/>
+				</ComboBox>
+				<StackPanel
 					Orientation="Vertical"
 					Grid.Column="1"
 					Grid.Row="5"
 					Grid.RowSpan="2"
-					Margin="20">
-				<TextBlock
-					Text="Изображение:"/>
-				<Image
-					Name="image_productPhoto"
-					IsVisible="False"
-					Height="120"
-					HorizontalAlignment="Left"/>
-				<TextBlock
-					Name="tblock_productPhoto"
-					IsVisible="False"/>
+					Margin="20"
+					VerticalAlignment="Top">
+					<TextBlock
+						Text="Изображение:"/>
+					<Image
+						Name="image_productPhoto"
+						IsVisible="False"
+						Height="120"
+						HorizontalAlignment="Left"/>
+					<TextBlock
+						Name="tblock_productPhoto"
+						IsVisible="False"/>
+					<StackPanel
+						Orientation="Horizontal">
+						<Button
+							Name="btn_deleteImage"
+							Content="Удалить"
+							IsVisible="false"
+							Click="ImageSelection"/>
+						<Button
+							Name="btn_addImage"
+							Content="Добавить"
+							Click="ImageSelection"/>
+					</StackPanel>
+				</StackPanel>
+				
 				<StackPanel
-					Orientation="Horizontal">
-					<Button
-						Name="btn_deleteImage"
-						Content="Удалить"
-						IsVisible="false"
-						Click="ImageSelection"/>
-					<Button
-						Name="btn_addImage"
-						Content="Добавить"
-						Click="ImageSelection"/>
+					Orientation="Vertical" Margin="10" VerticalAlignment="Top">
+					<TextBlock Text="Дополнительные товары:"/>
+					<ListBox
+						Name="lbox_attachedProducts" Width="150"
+						Background="#e7fabf" Height="250">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel
+									Width="100"
+									Background="White"
+									Tapped="StackPanel_Tapped">
+									<Image
+										Margin="10"
+										Height="100"
+										Source="{Binding ImageMain}"/>
+									<ToolTip.Tip>
+										<StackPanel>
+											<TextBlock Text="{Binding Name}"/>
+											<TextBlock Text="{Binding Cost, StringFormat='{}{0} &#8381;'}"/>
+										</StackPanel>
+									</ToolTip.Tip>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+						<Button Content="добавить"
+								Click="ButtonAdd_Click_ShowFlyout">
+							<Button.Flyout>
+								<Flyout>
+									<ListBox
+										Name="lbox_addAttachedProduct"
+										Width="150" Height="250"
+										Background="#e7fabf">
+										<ListBox.ItemTemplate>
+											<DataTemplate>
+												<StackPanel
+													Width="100"
+													Background="White"
+													Tapped="StackPanel_AddToAttachedProducts">
+													<Image
+														Margin="10"
+														Height="100"
+														Source="{Binding ImageMain}"/>
+													<ToolTip.Tip>
+														<StackPanel>
+															<TextBlock Text="{Binding Name}"/>
+															<TextBlock Text="{Binding Cost, StringFormat='{}{0} &#8381;'}"/>
+														</StackPanel>
+													</ToolTip.Tip>
+												</StackPanel>
+											</DataTemplate>
+										</ListBox.ItemTemplate>
+									</ListBox>
+								</Flyout>
+							</Button.Flyout>
+						</Button>
+						<Button Content="удалить"/>
+					</StackPanel>
 				</StackPanel>
 			</StackPanel>
 		</StackPanel>
@@ -81,6 +155,7 @@
 			Click="FormActivity"/>
 		<Button
 			Name="btn_delete"
+			IsVisible="False"
 			Grid.Row="2"
 			Margin="10"
 			Content="Удалить"

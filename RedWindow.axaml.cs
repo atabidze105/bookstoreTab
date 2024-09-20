@@ -1,9 +1,11 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using bookshopTab.Models;
 using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +14,8 @@ namespace bookshopTab;
 
 public partial class RedWindow : Window
 {
+    private Product _RedProduct = null;
+    //private List<>
     private string? _PictureFile = null; //изображение, которое изначально имеет объект
     private string? _SelectedImage = null; //выбранное изображение
 
@@ -34,9 +38,11 @@ public partial class RedWindow : Window
     {
         InitializeComponent();
         CboxSuppliersInit();
-        _PictureFile = product != null ? product.MainImagePath : null; //если объект имеет изображение, то ссылка на него хранится в поле, иначе null
+        _RedProduct = product;
+        _PictureFile = _RedProduct != null ? _RedProduct.MainImagePath : null; //если объект имеет изображение, то ссылка на него хранится в поле, иначе null
         tblock_header.Text = "Редактирование товара";
         btn_addItem.Content = "Сохранить";
+        btn_delete.IsVisible = true;
         DataDisplaying(product);
     }
 
@@ -44,21 +50,82 @@ public partial class RedWindow : Window
     {
         tbox_id.Text = product.ProductId.ToString();
         tbox_name.Text = product.Name;
-        tbox_cost.Text = product.Cost.ToString();
+        tbox_cost.Text = string.Format("{0:0.00}",product.Cost);
         tbox_description.Text = product.Description;
-        if (File.Exists(product.MainImagePath))
+        chbox_isActive.IsChecked = product.IsActive;
+        cbox_suppliers.SelectedItem = product.Manufacturer.Name;
+        if (File.Exists($"Assets/{product.MainImagePath}"))
         {
-            tblock_productPhoto.Text = product.MainImagePath;
+            tblock_productPhoto.Text = _SelectedImage = product.MainImagePath;
             image_productPhoto.Source = new Bitmap($"Assets/{product.MainImagePath}");
             tblock_productPhoto.IsVisible = image_productPhoto.IsVisible = btn_deleteImage.IsVisible = true;
         }
+        lbox_attachedProducts.ItemsSource = product.AttachedProducts.ToList();
+    }
+
+    private void NewDataApplying(Product product)
+    {
+        product.Name = tbox_name.Text;
+        product.Description = tbox_description.Text;
+        product.Cost = Convert.ToDouble(tbox_cost.Text);
+        product.IsActive = (bool)chbox_isActive.IsChecked!;
+        if (cbox_suppliers.SelectedIndex != 0)
+            product.ManufacturerId = Helper.Database.Manufacturers.ToList().FindIndex(x => x.Name == cbox_suppliers.SelectedItem) + 1;
+        else
+            product.ManufacturerId = null;
+        product.MainImagePath = _SelectedImage;
+    }
+
+    private void ShowMainWindow()
+    {
+
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.Show();
+        Close();
     }
 
     private void FormActivity(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        MainWindow mainWindow = new MainWindow();
-        mainWindow.Show();
-        Close();
+        Button btn = (sender as Button)!;
+        switch (btn.Name)
+        {
+            case "btn_addItem":
+                if (tbox_name.Text != "" && tbox_cost.Text != "" && cbox_suppliers.SelectedIndex != 0)
+                {
+
+                    if (_RedProduct == null)
+                    {
+                        Product product = new();
+                        product.ProductId = Helper.Database.Products.OrderByDescending(x => x.ProductId).ToList().First().ProductId + 1;
+                        NewDataApplying(product);
+                        Helper.Database.Products.Add(product);
+                        Helper.Database.SaveChanges();
+                    }
+                    else
+                    {
+                        NewDataApplying(_RedProduct);
+                        Helper.Database.SaveChanges();
+                        if (_SelectedImage != _PictureFile && _PictureFile != null)
+                            System.IO.File.Delete($"Assets/{_PictureFile}");
+                    }
+                    ShowMainWindow();
+                }
+                break;
+            case "btn_delete":
+                if (_SelectedImage != null) 
+                    System.IO.File.Delete($"Assets/{_SelectedImage}");
+                if (_PictureFile != null)
+                    System.IO.File.Delete($"Assets/{_PictureFile}");
+                Helper.Database.Products.Remove(_RedProduct);
+                Helper.Database.SaveChanges();
+                ShowMainWindow();
+                break;
+            case "btn_return":
+                if (_SelectedImage != null && _SelectedImage != _PictureFile) 
+                    System.IO.File.Delete($"Assets/{_SelectedImage}");
+                ShowMainWindow();
+                break;
+        }
     }
 
     private void CboxSuppliersInit()
@@ -149,5 +216,26 @@ public partial class RedWindow : Window
                 return filename; //возвращает название файла
             }
         return null; //если такой файл не был найден, возвращает null
+    }
+
+    private void StackPanel_Tapped(object? sender, Avalonia.Input.TappedEventArgs e)
+    {
+        var product = lbox_attachedProducts.SelectedItem as Product;
+        RedWindow redWindow = new RedWindow(product);
+        redWindow.Show();
+        Close();
+    }
+
+    private void ButtonAdd_Click_ShowFlyout(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        Button btn = (sender as Button)!;
+        btn.Flyout.ShowAt(tbox_name);
+        lbox_addAttachedProduct.ItemsSource = Helper.Database.Products.Where(x => x.ProductId.ToString() != tbox_id.Text && x.IsActive == true).ToList();
+    }
+
+    private void StackPanel_AddToAttachedProducts(object? sender, Avalonia.Input.TappedEventArgs e)
+    {
+        var item = sender as ListBoxItem;
+
     }
 }
