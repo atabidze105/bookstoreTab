@@ -30,7 +30,6 @@
 			<ComboBox
 				Name="cbox_filtration" VerticalAlignment="Center"
 				SelectionChanged="ComboBox_SelectionChanged">
-				<ComboBoxItem Content="Все элементы"/>
 			</ComboBox>
 			<ComboBox
 				Name="cbox_sorting" VerticalAlignment="Center"

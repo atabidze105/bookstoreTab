@@ -15,7 +15,7 @@ namespace bookshopTab;
 public partial class RedWindow : Window
 {
     private Product _RedProduct = null;
-    //private List<>
+    private List<Product> _NewAttachedProducts = [];
     private string? _PictureFile = null; //изображение, которое изначально имеет объект
     private string? _SelectedImage = null; //выбранное изображение
 
@@ -50,7 +50,7 @@ public partial class RedWindow : Window
     {
         tbox_id.Text = product.ProductId.ToString();
         tbox_name.Text = product.Name;
-        tbox_cost.Text = string.Format("{0:0.00}",product.Cost);
+        tbox_cost.Text = string.Format("{0:0.00}",product.Cost); //позволяет отобразить цену в формате целого числа с сотыми, разделитель запятая
         tbox_description.Text = product.Description;
         chbox_isActive.IsChecked = product.IsActive;
         cbox_suppliers.SelectedItem = product.Manufacturer.Name;
@@ -60,7 +60,9 @@ public partial class RedWindow : Window
             image_productPhoto.Source = new Bitmap($"Assets/{product.MainImagePath}");
             tblock_productPhoto.IsVisible = image_productPhoto.IsVisible = btn_deleteImage.IsVisible = true;
         }
+        lbox_attachedProducts.Items.Add( product );
         lbox_attachedProducts.ItemsSource = product.AttachedProducts.ToList();
+        
     }
 
     private void NewDataApplying(Product product)
@@ -74,6 +76,13 @@ public partial class RedWindow : Window
         else
             product.ManufacturerId = null;
         product.MainImagePath = _SelectedImage;
+        if (_NewAttachedProducts.Count > 0)
+        {
+            foreach (Product newAttachedProduct in _NewAttachedProducts)
+            {
+                product.AttachedProducts.Add(newAttachedProduct);
+            }
+        }
     }
 
     private void ShowMainWindow()
@@ -90,7 +99,7 @@ public partial class RedWindow : Window
         switch (btn.Name)
         {
             case "btn_addItem":
-                if (tbox_name.Text != "" && tbox_cost.Text != "" && cbox_suppliers.SelectedIndex != 0)
+                if (tbox_name.Text != "" && tbox_cost.Text != "" && cbox_suppliers.SelectedIndex != 0 && PriceCheck(tbox_cost.Text))
                 {
 
                     if (_RedProduct == null)
@@ -112,13 +121,17 @@ public partial class RedWindow : Window
                 }
                 break;
             case "btn_delete":
-                if (_SelectedImage != null) 
-                    System.IO.File.Delete($"Assets/{_SelectedImage}");
-                if (_PictureFile != null)
-                    System.IO.File.Delete($"Assets/{_PictureFile}");
-                Helper.Database.Products.Remove(_RedProduct);
-                Helper.Database.SaveChanges();
-                ShowMainWindow();
+                if (_RedProduct.Productsales.Count == 0 || _RedProduct.Productsales == null)
+                {
+                    if (_SelectedImage != null)
+                        System.IO.File.Delete($"Assets/{_SelectedImage}");
+                    if (_PictureFile != null)
+                        System.IO.File.Delete($"Assets/{_PictureFile}");
+                    _RedProduct.AttachedProducts.Clear(); //удаление информации о связанных товарах
+                    Helper.Database.Products.Remove(_RedProduct);
+                    Helper.Database.SaveChanges();
+                    ShowMainWindow();
+                }
                 break;
             case "btn_return":
                 if (_SelectedImage != null && _SelectedImage != _PictureFile) 
@@ -148,8 +161,7 @@ public partial class RedWindow : Window
             foreach (Manufacturer manufacturer in Helper.Database.Manufacturers.ToList())
             {
                 if (manufacturer.Name.Trim().ToLower().Contains(tboxItem.Text.Trim().ToLower()))
-                    cbox_suppliers.Items.Add(manufacturer.Name);
-                                    
+                    cbox_suppliers.Items.Add(manufacturer.Name);     
             }
         else
         {
@@ -225,17 +237,49 @@ public partial class RedWindow : Window
         redWindow.Show();
         Close();
     }
+    
 
     private void ButtonAdd_Click_ShowFlyout(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         Button btn = (sender as Button)!;
         btn.Flyout.ShowAt(tbox_name);
-        lbox_addAttachedProduct.ItemsSource = Helper.Database.Products.Where(x => x.ProductId.ToString() != tbox_id.Text && x.IsActive == true).ToList();
+        lbox_AddAttachedProduct.ItemsSource = Helper.Database.Products.Where(x => x.ProductId.ToString() != tbox_id.Text && x.IsActive == true).ToList();
     }
 
     private void StackPanel_AddToAttachedProducts(object? sender, Avalonia.Input.TappedEventArgs e)
     {
-        var item = sender as ListBoxItem;
+        var product = lbox_AddAttachedProduct.SelectedItem as Product;
+        _NewAttachedProducts.Add(product);
+    }
 
+    private bool PriceCheck(string price)
+    {
+        if (price != null || price != "")
+        {
+            string[] priceParts = price.Split(',');
+            
+            if (priceParts.Length <= 2)
+                if (priceParts.Length > 1)
+                {
+                    if ((priceParts[1].Length == 2 || priceParts[1].Length == 1) && (StringDigitnCheck(priceParts[0]) && StringDigitnCheck(priceParts[1]))) //в массиве будет больше двух элементов, если проставлено несколько запятых.
+                                                                                                                                                            //Здесь проверка кол-ва элементов и на вхождение в них знаков отличных от цифр
+                        return true;
+                }
+                else
+                {
+                    return StringDigitnCheck(priceParts[0]);
+                }
+        }        
+        return false;
+    }
+
+    private bool StringDigitnCheck(string s) //проверка на вхождение в строку не цифр
+    {
+        foreach (char c in s)
+        {
+            if (char.IsDigit(c) == false)
+            return false;
+        }
+        return true;
     }
 }

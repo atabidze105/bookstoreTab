@@ -45,6 +45,7 @@ namespace bookshopTab
 
         private void CboxFiltrationInit()
         {
+            cbox_filtration.Items.Add("Все элементы");
             List<Manufacturer> manufacturers = [];
             manufacturers.AddRange(Helper.Database.Manufacturers.ToList());
             foreach (Manufacturer manufacturer in manufacturers)
@@ -106,9 +107,7 @@ namespace bookshopTab
                     }
                     break;
             }
-            products.Clear();
-            products.AddRange(bubble);
-            return products;
+            return bubble;
         }
 
         private List<Product> Searching()
@@ -127,7 +126,7 @@ namespace bookshopTab
                     {
                         prioriryLevel++;
                     }
-                    if (product.Description.Trim().ToLower().Contains(tbox_searchbar.Text.Trim().ToLower()))
+                    if (product.Description != null && product.Description.Trim().ToLower().Contains(tbox_searchbar.Text.Trim().ToLower()))
                     {
                         prioriryLevel++;
                     }

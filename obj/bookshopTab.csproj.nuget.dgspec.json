@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\prdb\\Desktop\\bookshopTab\\bookshopTab.csproj": {}
+    "C:\\Users\\prdb\\Desktop\\bookstoreTab\\bookshopTab.csproj": {}
   },
   "projects": {
-    "C:\\Users\\prdb\\Desktop\\bookshopTab\\bookshopTab.csproj": {
+    "C:\\Users\\prdb\\Desktop\\bookstoreTab\\bookshopTab.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\prdb\\Desktop\\bookshopTab\\bookshopTab.csproj",
+        "projectUniqueName": "C:\\Users\\prdb\\Desktop\\bookstoreTab\\bookshopTab.csproj",
         "projectName": "bookshopTab",
-        "projectPath": "C:\\Users\\prdb\\Desktop\\bookshopTab\\bookshopTab.csproj",
+        "projectPath": "C:\\Users\\prdb\\Desktop\\bookstoreTab\\bookshopTab.csproj",
         "packagesPath": "C:\\Users\\prdb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\prdb\\Desktop\\bookshopTab\\obj\\",
+        "outputPath": "C:\\Users\\prdb\\Desktop\\bookstoreTab\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\prdb\\AppData\\Roaming\\NuGet\\NuGet.Config",

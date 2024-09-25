@@ -112,7 +112,7 @@
 							<Button.Flyout>
 								<Flyout>
 									<ListBox
-										Name="lbox_addAttachedProduct"
+										Name="lbox_AddAttachedProduct"
 										Width="150" Height="250"
 										Background="#e7fabf">
 										<ListBox.ItemTemplate>

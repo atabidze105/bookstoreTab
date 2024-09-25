@@ -15,15 +15,15 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = bookshopTab
-build_property.ProjectDir = C:\Users\prdb\Desktop\bookshopTab\
+build_property.ProjectDir = C:\Users\prdb\Desktop\bookstoreTab\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/prdb/Desktop/bookshopTab/App.axaml]
+[C:/Users/prdb/Desktop/bookstoreTab/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/prdb/Desktop/bookshopTab/MainWindow.axaml]
+[C:/Users/prdb/Desktop/bookstoreTab/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/prdb/Desktop/bookshopTab/RedWindow.axaml]
+[C:/Users/prdb/Desktop/bookstoreTab/RedWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
