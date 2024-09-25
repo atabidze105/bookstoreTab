@@ -1,0 +1,77 @@
+-- bookstore."Manufacturer" определение
+
+-- Drop table
+
+-- DROP TABLE bookstore."Manufacturer";
+
+CREATE TABLE bookstore."Manufacturer" (
+	manufacturer_id int4 NOT NULL,
+	"name" varchar NOT NULL,
+	start_date date NULL,
+	CONSTRAINT newtable_1_pk PRIMARY KEY (manufacturer_id)
+);
+
+
+-- bookstore."Product" определение
+
+-- Drop table
+
+-- DROP TABLE bookstore."Product";
+
+CREATE TABLE bookstore."Product" (
+	product_id int4 NOT NULL,
+	"name" varchar NOT NULL,
+	"cost" float8 NOT NULL,
+	description varchar NULL,
+	main_image_path varchar NULL,
+	is_active bool NOT NULL,
+	manufacturer_id int4 NULL,
+	CONSTRAINT newtable_pk PRIMARY KEY (product_id),
+	CONSTRAINT product_manufacturer_fk FOREIGN KEY (manufacturer_id) REFERENCES bookstore."Manufacturer"(manufacturer_id)
+);
+
+
+-- bookstore.attachedproduct определение
+
+-- Drop table
+
+-- DROP TABLE bookstore.attachedproduct;
+
+CREATE TABLE bookstore.attachedproduct (
+	main_product_id int4 NOT NULL,
+	attached_product_id int4 NOT NULL,
+	CONSTRAINT attachedproduct_pk PRIMARY KEY (main_product_id, attached_product_id),
+	CONSTRAINT attachedproduct_product_fk FOREIGN KEY (main_product_id) REFERENCES bookstore."Product"(product_id),
+	CONSTRAINT attachedproduct_product_fk_1 FOREIGN KEY (attached_product_id) REFERENCES bookstore."Product"(product_id)
+);
+
+
+-- bookstore.productphoto определение
+
+-- Drop table
+
+-- DROP TABLE bookstore.productphoto;
+
+CREATE TABLE bookstore.productphoto (
+	id int4 GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START 1 CACHE 1 NO CYCLE) NOT NULL,
+	product_id int4 NOT NULL,
+	photo_path varchar NOT NULL,
+	CONSTRAINT productphoto_pk PRIMARY KEY (id),
+	CONSTRAINT productphoto_product_fk FOREIGN KEY (product_id) REFERENCES bookstore."Product"(product_id)
+);
+
+
+-- bookstore.productsales определение
+
+-- Drop table
+
+-- DROP TABLE bookstore.productsales;
+
+CREATE TABLE bookstore.productsales (
+	id int4 NOT NULL,
+	product_id int4 NOT NULL,
+	"date" date NOT NULL,
+	quantity int4 NOT NULL,
+	CONSTRAINT productsales_pk PRIMARY KEY (id),
+	CONSTRAINT productsales_product_fk FOREIGN KEY (product_id) REFERENCES bookstore."Product"(product_id)
+);
